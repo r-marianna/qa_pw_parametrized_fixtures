@@ -5,6 +5,8 @@ export class ViewArticlePage {
     this.page = page;
     this.userId = userId;
     this.articleTitleHeader = page.getByRole('heading');
+    this.editBtn = page.getByRole('link', { name: 'Edit Article' }).first();
+    this.followBtn = page.getByRole('button', { name: 'Follow' }).first();
   }
 
   authorLinkInArticleHeader(username) {
@@ -27,6 +29,24 @@ export class ViewArticlePage {
     await this.step(`Open 'View Article' page`, async () => {
       await this.page.goto(url);
     });
+  }
+
+  async reload() {
+    await this.step(`Refresh 'View Article' page`, async () => {
+      await this.page.reload();
+    });
+  }
+
+  async clickEditButton() {
+    await this.step('Click on the Edit Article button', async () => {
+      await this.editBtn.click();
+    })
+  }
+
+  async clickFollowBtn() {
+    await this.step('Click on the Follow button', async () => {
+      await this.followBtn.click();
+    })
   }
 
   async assertArticleTitleIsVisible(title) {
@@ -54,6 +74,14 @@ export class ViewArticlePage {
     await this.step(`Assert the article has correct tags`, async () => {
       for (let i = 0; i < tags.length; i++) {
         await expect(this.tagListItem(tags[i])).toBeVisible();
+      }
+    });
+  }
+
+  async assertArticleTagsAreNotVisible(tags) {
+    await this.step(`Assert the article has no tags`, async () => {
+      for (let i = 0; i < tags.length; i++) {
+        await expect(this.tagListItem(tags[i])).toBeHidden();
       }
     });
   }
