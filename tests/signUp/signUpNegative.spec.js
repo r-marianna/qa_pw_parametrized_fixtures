@@ -15,6 +15,7 @@ const testParameters = [
     message: EMPTY_USERNAME_MESSAGE,
     title: 'empty username'
   },
+
   {
     email: '',
     username: user.username,
@@ -22,6 +23,7 @@ const testParameters = [
     message: INVALID_EMAIL_MESSAGE,
     title: 'empty email'
   },
+
   {
     email: user.email,
     username: user.username,
