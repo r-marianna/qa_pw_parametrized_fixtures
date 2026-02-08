@@ -8,8 +8,8 @@ const testParameters = [
   { tagsNumber: 5, testNameEnding: 'five tags' },
 ];
 
-testParameters.forEach(({ tagsNumber, testNameEnding }) => {
-  test.describe('Add tags on edit to the previously created article', () => {
+test.describe('Add tags on edit to the previously created article', () => {
+  testParameters.forEach(({ tagsNumber, testNameEnding }) => {
     test.beforeEach(async ({ page, user }) => {
       await signUpUser(page, user);
     });
@@ -47,5 +47,5 @@ testParameters.forEach(({ tagsNumber, testNameEnding }) => {
         [...article.tags, ...article2.tags]
       );
     });
-  });
-})
+  })
+});

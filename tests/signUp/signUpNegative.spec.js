@@ -31,8 +31,8 @@ const testParameters = [
   },
 ];
 
-testParameters.forEach(({ email, username, message, password, title }) => {
-  test.describe('Sign up negative tests', () => {
+test.describe('Sign up negative tests', () => {
+  testParameters.forEach(({ email, username, message, password, title }) => {
     test(`Sign up with ${title}`, async ({ signUpPage }) => {
       await signUpPage.open();
       await signUpPage.fillUsernameField(username);

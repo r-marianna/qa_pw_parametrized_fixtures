@@ -8,8 +8,8 @@ const testParameters = [
   { tagsNumber: 5, testNameEnding: 'five tags' },
 ];
 
-testParameters.forEach(({ tagsNumber, testNameEnding }) => {
-  test.describe('Remove all tags from previously created article', () => {
+test.describe('Remove all tags from previously created article', () => {
+  testParameters.forEach(({ tagsNumber, testNameEnding }) => {
     test.beforeEach(async ({ page, user }) => {
       await signUpUser(page, user);
     });
@@ -44,5 +44,5 @@ testParameters.forEach(({ tagsNumber, testNameEnding }) => {
       await viewArticlePage.assertArticleTextIsVisible(article.text);
       await viewArticlePage.assertArticleTagsAreNotVisible(article.tags);
     });
-  });
-})
+  })
+});
